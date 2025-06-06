@@ -1,0 +1,73 @@
+import React from "react";
+import { useAuth } from "../context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
+import SignIn from "./SignIn.jsx";
+import { Button } from "./ui/button.jsx";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+const Navbar = () => {
+  const { user, logOut } = useAuth();
+  console.log("logoutuser::::", user);
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      navigate("/");
+      console.log("Logout successful!");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+  const navLinks = [
+    { label: "HOME", path: "/home" },
+    { label: "CREATE TRIP", path: "/create-trip" },
+    { label: "BLOG", path: "/contact" },
+    { label: "MY TRIP", path: "/my-trip" },
+  ];
+
+  return (
+    <nav className="flex justify-between items-center  p-4 border-b-1 shadow-md">
+      <div>
+        <h1>BackPackers</h1>
+      </div>
+      {user && (
+        <div className="flex gap-4 font-bold">
+          {navLinks.map((link) => (
+            <Button
+              variant="ghost"
+              onClick={() => navigate(link.path)}
+              key={link.label}
+            >
+              <p className="font-bold ">{link.label}</p>
+            </Button>
+          ))}
+        </div>
+      )}
+      {user ? (
+        <div>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Avatar className="w-11 h-12 cursor-pointer">
+                <AvatarImage src={user.photoURL} alt="User profile" />
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <Button onClick={handleLogout}>Log Out</Button>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      ) : (
+        <div>
+          <SignIn />
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
