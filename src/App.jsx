@@ -32,7 +32,11 @@ function App() {
 
         <Route
           path="/join-trip/:tripId"
-          element={<ViewTrip />} // publicly accessible version
+          element={
+            <ProtectedRoute>
+              <ViewTrip />
+            </ProtectedRoute>
+          }
         />
       </Routes>
     </div>
