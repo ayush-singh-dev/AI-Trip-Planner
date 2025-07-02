@@ -1,9 +1,10 @@
 import { Share2Icon } from "lucide-react";
 // import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import InviteDialog from "./InviteDialog";
 
-const DetInfoSection = ({ trip }) => {
-  // console.log("dtrip: ", trip);
+const DetInfoSection = ({ trip, tripid }) => {
+  // console.log("dtripid: ", tripid);
   const location = trip.plan?.location;
   console.log("location-detail: ", location);
   const duration = trip.plan?.Days;
@@ -58,9 +59,8 @@ const DetInfoSection = ({ trip }) => {
             </div>
           </div>
 
-          <Button>
-            <Share2Icon />
-          </Button>
+          
+          <InviteDialog tripid={tripid}/>
         </div>
       </div>
     </div>

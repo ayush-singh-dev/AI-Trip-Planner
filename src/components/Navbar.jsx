@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SignIn from "./SignIn.jsx";
 import { Button } from "./ui/button.jsx";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
@@ -10,9 +10,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+const navLinks = [
+  { label: "HOME", path: "/home" },
+  { label: "CREATE TRIP", path: "/create-trip" },
+  { label: "BLOG", path: "/contact" },
+  { label: "MY TRIP", path: "/my-trip" },
+];
+
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  console.log("logoutuser::::", user);
+  useEffect(() => {
+    console.log("Navbar user:", user);
+  }, [user]);
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -23,27 +32,27 @@ const Navbar = () => {
       console.error("Error logging out:", error);
     }
   };
-  const navLinks = [
-    { label: "HOME", path: "/home" },
-    { label: "CREATE TRIP", path: "/create-trip" },
-    { label: "BLOG", path: "/contact" },
-    { label: "MY TRIP", path: "/my-trip" },
-  ];
+
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
 
   return (
     <nav className="flex justify-between items-center  p-4 border-b-1 shadow-md">
       <div>
-        <h1>BackPackers</h1>
+        <Link to="/home">
+          <h1>BackPackers</h1>
+        </Link>
       </div>
       {user && (
         <div className="flex gap-4 font-bold">
           {navLinks.map((link) => (
             <Button
               variant="ghost"
-              onClick={() => navigate(link.path)}
+              onClick={() => handleNavigate(link.path)}
               key={link.label}
             >
-              <p className="font-bold ">{link.label}</p>
+              <p className="font-bold">{link.label}</p>
             </Button>
           ))}
         </div>

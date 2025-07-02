@@ -7,6 +7,7 @@ import CreateTrip from './pages/CreateTrip';
 import { Toaster } from 'react-hot-toast';
 import MyTrip from './pages/MyTrip';
 import ViewTrip from './pages/viewTrip/[tripId]/Index';
+import ProtectedRoute from './components/ProtectedRoute';
 function App() {
 
   return (
@@ -20,7 +21,14 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/create-trip" element={<CreateTrip />} />
         <Route path="/my-trip" element={<MyTrip />} />
-        <Route path="/view-trip/:tripId" element={<ViewTrip/>} />
+        <Route
+          path="/view-trip/:tripId"
+          element={
+            <ProtectedRoute>
+              <ViewTrip />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );

@@ -23,7 +23,7 @@ const ViewTrip = () => {
   };
   return (
     <div className="  p-10 md:px-17 ">
-      <DetInfoSection trip={trip} />
+      <DetInfoSection trip={trip} tripid={tripId} />
       <DetHotel trip={trip} />
       <PlaceToVisit trip={trip} />
     </div>

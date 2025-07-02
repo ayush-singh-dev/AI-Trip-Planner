@@ -7,13 +7,13 @@ import { AuthContextProvider } from './context/AuthContext.jsx'
 import { AiContextProvider } from './context/AiContext'
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <AuthContextProvider>
-      <AiContextProvider>
-        <StrictMode>
+  <StrictMode>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <AiContextProvider>
           <App />
-        </StrictMode>
-      </AiContextProvider>
-    </AuthContextProvider>
-  </BrowserRouter>
+        </AiContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  </StrictMode>
 );

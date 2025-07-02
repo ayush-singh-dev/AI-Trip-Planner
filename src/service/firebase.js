@@ -4,12 +4,13 @@ import {getAuth} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDmAiuf9KTYaFvPa_nvLvmp1zsmmhKdJHE",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || process.env.FIREBASE_API_KEY,
   authDomain: "nodal-magnet-438709-p4.firebaseapp.com",
-  projectId: "nodal-magnet-438709-p4",
+  projectId:
+    import.meta.env.VITE_FIREBASE_PROJECT_ID || process.env.FIREBASE_PROJECT_ID,
   storageBucket: "nodal-magnet-438709-p4.firebasestorage.app",
   messagingSenderId: "66810796549",
-  appId: "1:66810796549:web:856cdf3ebffb5204f89a6c",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || process.env.FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
