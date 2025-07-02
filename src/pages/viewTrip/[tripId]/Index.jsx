@@ -39,7 +39,7 @@ import { doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db, auth } from "@/service/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import JoinTripModal from "@/components/JoinTripModal"; // Import it!
+import JoinTripModal from "@/components/JoinTripModel"; // Import it!
 import DetInfoSection from "@/components/DetInfoSection";
 import DetHotel from "@/components/DetHotel";
 import PlaceToVisit from "@/components/PlaceToVisit";
