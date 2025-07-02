@@ -7,6 +7,7 @@ import DetHotel from "@/components/DetHotel";
 import PlaceToVisit from "@/components/PlaceToVisit";
 const ViewTrip = () => {
   const { tripId } = useParams();
+  console.log("Trip ID from params:", tripId);
   const [trip, setTrip] = useState({});
   useEffect(() => {
     tripId && getTripDetails();
@@ -23,6 +24,7 @@ const ViewTrip = () => {
   };
   return (
     <div className="  p-10 md:px-17 ">
+      <h1 className="text-2xl font-bold">Welcome to the trip!</h1>
       <DetInfoSection trip={trip} tripid={tripId} />
       <DetHotel trip={trip} />
       <PlaceToVisit trip={trip} />
